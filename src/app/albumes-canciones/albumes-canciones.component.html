@@ -1,0 +1,90 @@
+<div class="min-h-screen bg-gradient-to-br from-fuchsia-900 via-purple-800 to-orange-600 text-white">
+  <!-- Contenedor principal -->
+  <div class="max-w-4xl mx-auto p-6">
+    <!-- Barra de navegación -->
+    <nav class="bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-lg shadow-lg p-4 mb-6">
+      <ul class="flex space-x-8 justify-center">
+        <li>
+          <a [routerLink]="['/home']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 2v6a2 2 0 002 2h4a2 2 0 002-2v-6"></path>
+            </svg>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/explorar']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0a7 7 0 111.415-1.414L21 21z"></path>
+            </svg>
+            <span>Buscar</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/perfil']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+            <span>Tu Biblioteca</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sección del álbum -->
+    <div class="bg-gradient-to-r from-purple-600 to-fuchsia-600 rounded-lg shadow-lg p-6">
+      <div class="flex items-center space-x-4 mb-6">
+        <img
+          src="https://via.placeholder.com/100"
+          alt="{{ album.title }}"
+          class="w-24 h-24 rounded-md"
+        />
+        <div>
+          <h1 class="text-3xl font-bold text-orange-300">{{ album.title }}</h1>
+          <p class="text-lg text-fuchsia-200">{{ album.artist }}</p>
+          <p class="text-sm text-purple-200">{{ album.releaseDate }}</p>
+          <div class="flex items-center space-x-2 mt-2">
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+              </svg>
+            </button>
+            <button class="bg-green-500 rounded-full p-2 hover:bg-green-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de canciones -->
+      <div class="space-y-2">
+        <div
+          *ngFor="let song of album.songs; let i = index"
+          class="flex items-center justify-between bg-fuchsia-500 p-3 rounded-md hover:bg-fuchsia-600 transition"
+        >
+          <div class="flex items-center space-x-4">
+            <span class="text-fuchsia-200">{{ i + 1 }}</span>
+            <div>
+              <h4 class="text-base font-medium text-white">{{ song.title }}</h4>
+              <p class="text-sm text-purple-200">{{ song.artist }}</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+              </svg>
+            </button>
+            <button class="bg-green-500 rounded-full p-1 hover:bg-green-600 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

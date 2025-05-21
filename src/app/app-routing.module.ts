@@ -6,6 +6,9 @@ import { ExplorarFucsiaFlowComponent } from './explorar-fucsia-flow/explorar-fuc
 import { PerfilFucsiaFlowComponent } from './perfil-fucsia-flow/perfil-fucsia-flow.component';
 import { ReproduccionCancionesComponent } from './reproduccion-canciones/reproduccion-canciones.component';
 import { ArtistasComponent } from './artistas/artistas.component';
+import { AlbumesComponent } from './albumes/albumes.component';
+import { AlbumesCancionesComponent } from './albumes-canciones/albumes-canciones.component';
+import { ArtistasListComponent } from './artistas-list/artistas-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFucsiaFlowComponent },
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: 'explorar', component: ExplorarFucsiaFlowComponent },
   { path: 'perfil', component: PerfilFucsiaFlowComponent },
   { path: 'reproduccion', component: ReproduccionCancionesComponent },
-  { path: 'artistas', component: ArtistasComponent }, // Nueva ruta agregada
+  { path: 'artistas', component: ArtistasComponent },
+  { path: 'albumes', component: AlbumesComponent },
+  { path: 'albumes/:id', component: AlbumesCancionesComponent },
+  { path: 'artistas-list', component: ArtistasListComponent }, // Nueva ruta para ArtistasListComponent
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 ];

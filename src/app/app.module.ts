@@ -10,7 +10,10 @@ import { InicoFucsiaFlowComponent } from './inico-fucsia-flow/inico-fucsia-flow.
 import { ExplorarFucsiaFlowComponent } from './explorar-fucsia-flow/explorar-fucsia-flow.component';
 import { PerfilFucsiaFlowComponent } from './perfil-fucsia-flow/perfil-fucsia-flow.component';
 import { ReproduccionCancionesComponent } from './reproduccion-canciones/reproduccion-canciones.component';
-import { ArtistasComponent } from './artistas/artistas.component'; // Corrección de la importación
+import { ArtistasComponent } from './artistas/artistas.component';
+import { AlbumesComponent } from './albumes/albumes.component';
+import { AlbumesCancionesComponent } from './albumes-canciones/albumes-canciones.component';
+import { ArtistasListComponent } from './artistas-list/artistas-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ArtistasComponent } from './artistas/artistas.component'; // Correcció
     ExplorarFucsiaFlowComponent,
     PerfilFucsiaFlowComponent,
     ReproduccionCancionesComponent,
-    ArtistasComponent // Solo una declaración, sin duplicados
+    ArtistasComponent,
+    AlbumesComponent,
+    AlbumesCancionesComponent,
+    ArtistasListComponent,
   ],
   imports: [
     BrowserModule,
