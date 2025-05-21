@@ -1,0 +1,49 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-fuchsia-900 via-purple-800 to-orange-600">
+  <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl w-full max-w-md">
+    <h2 class="text-3xl font-bold text-center text-fuchsia-200 mb-6">FucsiaFlow Login</h2>
+    <form class="space-y-6" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name" class="block text-sm font-medium text-fuchsia-100">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="name"
+          name="name"
+          class="mt-1 w-full px-4 py-2 bg-fuchsia-950 bg-opacity-50 text-fuchsia-100 border border-fuchsia-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-fuchsia-300"
+          placeholder="Ingresa tu nombre"
+        >
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-fuchsia-100">Email</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          class="mt-1 w-full px-4 py-2 bg-fuchsia-950 bg-opacity-50 text-fuchsia-100 border border-fuchsia-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-fuchsia-300"
+          placeholder="Ingresa tu email"
+        >
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-fuchsia-100">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          class="mt-1 w-full px-4 py-2 bg-fuchsia-950 bg-opacity-50 text-fuchsia-100 border border-fuchsia-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-fuchsia-300"
+          placeholder="Ingresa tu contraseña"
+        >
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 px-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-semibold rounded-lg hover:from-fuchsia-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
+      >
+        Iniciar Sesión
+      </button>
+    </form>
+    <p class="mt-4 text-center text-sm text-fuchsia-200">
+      ¿No tienes una cuenta? <a href="#" class="text-orange-400 hover:underline">Crea una cuenta</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="min-h-screen bg-fuchsia-950 text-white p-6">
+  <!-- Contenedor principal -->
+  <div class="max-w-4xl mx-auto">
+    <!-- Sección de información del usuario -->
+    <div class="bg-gradient-to-r from-fuchsia-500 to-purple-500 rounded-lg shadow-lg p-6 mb-6">
+      <div class="flex items-center space-x-4">
+        <img
+          [src]="user.profilePic"
+          alt="Profile"
+          class="w-24 h-24 rounded-full border-4 border-orange-400"
+        />
+        <div class="flex-1">
+          <h1 class="text-3xl font-bold text-orange-300">{{ user.name }}</h1>
+          <p class="text-purple-200">{{ user.email }}</p>
+          <p class="text-gray-200 mt-2">{{ user.description }}</p>
+        </div>
+        <button
+          (click)="logout()"
+          class="bg-gradient-to-r from-orange-500 to-fuchsia-500 text-white px-4 py-2 rounded-md hover:from-orange-600 hover:to-fuchsia-600 transition"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+
+    <!-- Sección de Tus canciones favoritas -->
+    <div class="bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-2xl font-semibold text-orange-300 mb-4">Tus canciones favoritas</h2>
+      <div class="space-y-4">
+        <div
+          *ngFor="let song of favoriteSongs; let i = index"
+          class="flex items-center justify-between bg-fuchsia-600 p-3 rounded-md hover:bg-fuchsia-700 transition"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="{{ song.title }}"
+              class="w-10 h-10 rounded-md"
+            />
+            <div>
+              <h4 class="text-base font-medium text-fuchsia-200">{{ song.title }}</h4>
+              <span class="text-sm text-purple-200">{{ song.artist }}</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+              </svg>
+            </button>
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Álbumes favoritos -->
+    <div class="bg-gradient-to-r from-fuchsia-500 to-orange-500 rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-2xl font-semibold text-purple-300 mb-4">Álbumes favoritos</h2>
+      <div class="space-y-4">
+        <div
+          *ngFor="let album of favoriteAlbums; let i = index"
+          class="flex items-center justify-between bg-purple-600 p-3 rounded-md hover:bg-purple-700 transition"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="{{ album.title }}"
+              class="w-10 h-10 rounded-md"
+            />
+            <div>
+              <h4 class="text-base font-medium text-fuchsia-200">{{ album.title }}</h4>
+              <span class="text-sm text-purple-200">{{ album.year }}</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+              </svg>
+            </button>
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Artistas favoritos -->
+    <div class="bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-lg shadow-lg p-6">
+      <h2 class="text-2xl font-semibold text-orange-300 mb-4">Artistas favoritos</h2>
+      <div class="space-y-4">
+        <div
+          *ngFor="let artist of favoriteArtists; let i = index"
+          class="flex items-center justify-between bg-fuchsia-600 p-3 rounded-md hover:bg-fuchsia-700 transition"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="{{ artist }}"
+              class="w-10 h-10 rounded-md"
+            />
+            <h4 class="text-base font-medium text-fuchsia-200">{{ artist }}</h4>
+          </div>
+          <div class="flex items-center space-x-3">
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+              </svg>
+            </button>
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

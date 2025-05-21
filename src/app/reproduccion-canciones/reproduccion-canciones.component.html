@@ -1,0 +1,95 @@
+<div class="min-h-screen bg-gradient-to-br from-fuchsia-600 to-orange-500 text-white flex flex-col justify-center items-center p-6">
+  <!-- Información de la canción -->
+  <div class="w-full max-w-md flex items-center justify-between mb-6">
+    <!-- Imagen del álbum -->
+    <img
+      src="https://via.placeholder.com/50"
+      alt="Album cover"
+      class="w-12 h-12 rounded-md mr-4"
+    />
+    <!-- Título y artista -->
+    <div class="flex-1">
+      <h2 class="text-lg font-semibold text-orange-400">Obsesionista</h2>
+      <p class="text-sm text-fuchsia-200">Camila</p>
+    </div>
+    <!-- Botones de acción -->
+    <div class="flex space-x-3">
+      <button class="text-fuchsia-100 hover:text-orange-400 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+      </button>
+      <button class="text-fuchsia-100 hover:text-orange-400 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="w-full max-w-md mb-6">
+    <div class="flex justify-between text-sm text-fuchsia-200 mb-2">
+      <span>2:34</span>
+      <span>-2:32</span>
+    </div>
+    <div class="relative">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        class="w-full h-1 bg-fuchsia-600 rounded-lg appearance-none cursor-pointer"
+        style="background: linear-gradient(to right, #f97316 50%, #a855f7 50%)"
+      />
+    </div>
+  </div>
+
+  <!-- Controles de reproducción -->
+  <div class="w-full max-w-md flex justify-center items-center space-x-6">
+    <!-- Mezclar -->
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l2-2m0 0l-2-2m2 2H5m14-2l2 2m-2-2H5m0 0l-2 2m2-2l-2-2"></path>
+      </svg>
+    </button>
+    <!-- Retroceder -->
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <!-- Reproducir/Pausar -->
+    <button class="bg-gradient-to-r from-orange-500 to-fuchsia-500 rounded-full p-4 hover:from-orange-600 hover:to-fuchsia-600 transition">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </button>
+    <!-- Avanzar -->
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    <!-- Repetir -->
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5m-5 6v5h5m10-10h-5v-5m5 10h-5v-5"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Acciones adicionales -->
+  <div class="w-full max-w-md flex justify-between mt-6">
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+      </svg>
+    </button>
+    <button class="text-fuchsia-100 hover:text-orange-400 transition">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+</div>
