@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'explorar', component: ExplorarFucsiaFlowComponent },
   { path: 'perfil', component: PerfilFucsiaFlowComponent },
   { path: 'reproduccion', component: ReproduccionCancionesComponent },
-  { path: 'artistas', component: ArtistasComponent },
+  { path: 'artistas/:id', component: ArtistasComponent },
   { path: 'albumes', component: AlbumesComponent },
   { path: 'albumes/:id', component: AlbumesCancionesComponent },
   { path: 'artistas-list', component: ArtistasListComponent }, // Nueva ruta para ArtistasListComponent
