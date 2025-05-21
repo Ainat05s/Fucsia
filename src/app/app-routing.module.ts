@@ -9,6 +9,7 @@ import { ArtistasComponent } from './artistas/artistas.component';
 import { AlbumesComponent } from './albumes/albumes.component';
 import { AlbumesCancionesComponent } from './albumes-canciones/albumes-canciones.component';
 import { ArtistasListComponent } from './artistas-list/artistas-list.component';
+import { GenerosComponent } from './generos/generos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFucsiaFlowComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'artistas/:id', component: ArtistasComponent },
   { path: 'albumes', component: AlbumesComponent },
   { path: 'albumes/:id', component: AlbumesCancionesComponent },
-  { path: 'artistas-list', component: ArtistasListComponent }, // Nueva ruta para ArtistasListComponent
+  { path: 'artistas-list', component: ArtistasListComponent },
+  { path: 'generos', component: GenerosComponent }, // Nueva ruta para GenerosComponent
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 ];

@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-gradient-to-br from-fuchsia-900 via-purple-800 to-orange-600 text-white">
+  <!-- Contenedor principal -->
+  <div class="max-w-4xl mx-auto p-6">
+    <!-- Barra de navegación -->
+    <nav class="bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-lg shadow-lg p-4 mb-6">
+      <ul class="flex space-x-8 justify-center">
+        <li>
+          <a [routerLink]="['/home']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 2v6a2 2 0 002 2h4a2 2 0 002-2v-6"></path>
+            </svg>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/explorar']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0a7 7 0 111.415-1.414L21 21z"></path>
+            </svg>
+            <span>Buscar</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/perfil']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+            <span>Tu Biblioteca</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sección de géneros -->
+    <div class="bg-gradient-to-r from-purple-600 to-fuchsia-600 rounded-lg shadow-lg p-6">
+      <h2 class="text-2xl font-semibold text-orange-300 mb-4">Géneros</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div *ngFor="let genre of genres; let i = index" class="bg-gradient-to-r from-fuchsia-500 to-orange-500 rounded-md">
+          <button
+            (click)="toggleGenre(i)"
+            class="w-full flex items-center justify-between p-3 rounded-md hover:from-fuchsia-600 hover:to-orange-600 transition-all transform hover:scale-105"
+          >
+            <span class="text-base font-medium text-fuchsia-200">{{ genre.name }}</span>
+            <svg class="w-5 h-5 text-purple-200" [ngClass]="{'rotate-180': genre.isExpanded}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <!-- Lista de canciones (desplegable) -->
+          <div *ngIf="genre.isExpanded" class="p-3 bg-fuchsia-600 rounded-b-md">
+            <div *ngFor="let song of genre.songs" class="flex items-center justify-between py-2 border-t border-purple-500">
+              <div class="flex items-center space-x-3">
+                <span class="text-sm text-purple-200">{{ song.title }}</span>
+                <span class="text-xs text-fuchsia-200">{{ song.artist }}</span>
+              </div>
+              <button class="bg-green-500 rounded-full p-1 hover:bg-green-600 transition">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

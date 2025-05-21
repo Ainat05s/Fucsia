@@ -14,6 +14,7 @@ import { ArtistasComponent } from './artistas/artistas.component';
 import { AlbumesComponent } from './albumes/albumes.component';
 import { AlbumesCancionesComponent } from './albumes-canciones/albumes-canciones.component';
 import { ArtistasListComponent } from './artistas-list/artistas-list.component';
+import { GenerosComponent } from './generos/generos.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ArtistasListComponent } from './artistas-list/artistas-list.component';
     AlbumesComponent,
     AlbumesCancionesComponent,
     ArtistasListComponent,
+    GenerosComponent,
   ],
   imports: [
     BrowserModule,
