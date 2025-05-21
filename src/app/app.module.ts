@@ -15,6 +15,8 @@ import { AlbumesComponent } from './albumes/albumes.component';
 import { AlbumesCancionesComponent } from './albumes-canciones/albumes-canciones.component';
 import { ArtistasListComponent } from './artistas-list/artistas-list.component';
 import { GenerosComponent } from './generos/generos.component';
+import { SafePipe } from './pipes/safe.pipe';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,16 @@ import { GenerosComponent } from './generos/generos.component';
     AlbumesComponent,
     AlbumesCancionesComponent,
     ArtistasListComponent,
-    GenerosComponent,
+    GenerosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    SafePipe,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

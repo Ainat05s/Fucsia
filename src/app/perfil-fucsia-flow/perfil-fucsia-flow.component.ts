@@ -1,40 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
+
+interface ProfileResponse {
+  idUsuario: number;
+  nombre: string;
+  email: string;
+  fecha_registro: string;
+  idCancion: number;
+  titulo: string;
+  duracion: string;
+  youtube_link: string;
+  album: string;
+  artista: string;
+}
 
 @Component({
   selector: 'app-perfil-fucsia-flow',
   standalone: false,
   templateUrl: './perfil-fucsia-flow.component.html',
-  styleUrl: './perfil-fucsia-flow.component.scss'
+  styleUrls: ['./perfil-fucsia-flow.component.scss']
 })
-export class PerfilFucsiaFlowComponent {
-  // Datos de ejemplo para el usuario
+export class PerfilFucsiaFlowComponent implements OnInit {
   user = {
-    name: 'Juan Pérez',
-    email: 'juan.perez@example.com',
+    name: '',
+    email: '',
     profilePic: 'https://via.placeholder.com/150',
     description: 'Amante de la música pop y el rock alternativo.'
   };
+  favoriteSongs: ProfileResponse[] = [];
+  errorMessage: string = '';
 
-  // Datos de ejemplo para listas de favoritos
-  favoriteSongs = [
-    { title: 'Bohemian Rhapsody', artist: 'Queen' },
-    { title: 'Shape of You', artist: 'Ed Sheeran' },
-    { title: 'Blinding Lights', artist: 'The Weeknd' }
-  ];
+  constructor(private profileService: ProfileService, private router: Router) {}
 
-  favoriteAlbums = [
-    { title: 'K-12', year: '2019', artist: 'Melanie Martinez' },
-    { title: 'Reggaeton 2017, 2018, 2019 &...', year: '2023', artist: 'Various Artists' }
-  ];
+  ngOnInit(): void {
+    // Carga la API de YouTube
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
 
-  favoriteArtists = ['Queen', 'The Beatles', 'Dua Lipa'];
+    // Obtener userId desde localStorage
+    const authData = JSON.parse(localStorage.getItem('authData') || '{}');
+    const userId = authData.id;
 
-  // Función para cerrar sesión
+    if (userId) {
+      this.profileService.getProfile(userId).subscribe({
+        next: (response) => {
+          if (response && response.length > 0) {
+            this.user.name = response[0].nombre;
+            this.user.email = response[0].email;
+            this.favoriteSongs = response; // Asigna las canciones favoritas
+          } else {
+            this.errorMessage = 'No se encontraron datos del perfil.';
+          }
+        },
+        error: (err) => {
+          this.errorMessage = 'Error al cargar el perfil. Por favor, intenta de nuevo más tarde.';
+          console.error('Error fetching profile:', err);
+        }
+      });
+    } else {
+      this.errorMessage = 'No se encontró el ID de usuario. Por favor, inicia sesión.';
+      this.router.navigate(['/login']);
+    }
+  }
+
   logout(): void {
-    // Placeholder: Implementa aquí tu lógica de cierre de sesión
-    console.log('Cerrando sesión...');
-    // Ejemplo: Puedes redirigir al usuario o limpiar el estado
-    // this.authService.logout();
-    // this.router.navigate(['/login']);
+    localStorage.removeItem('authData');
+    this.router.navigate(['/login']);
+  }
+
+  getYouTubeVideoId(youtubeLink: string): string {
+    const videoIdMatch = youtubeLink.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&\?]+)/);
+    return videoIdMatch ? videoIdMatch[1] : '';
   }
 }

@@ -1,25 +1,40 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-fucsia-flow',
   standalone: false,
   templateUrl: './login-fucsia-flow.component.html',
-  styleUrl: './login-fucsia-flow.component.scss'
+  styleUrls: ['./login-fucsia-flow.component.scss']
 })
 export class LoginFucsiaFlowComponent {
-  // Propiedades para los valores del formulario
   name: string = '';
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  // Función para manejar el envío del formulario
+  constructor(private authService: AuthService, private router: Router) {}
+
   onSubmit(): void {
-    console.log('Formulario enviado:', {
-      name: this.name,
-      email: this.email,
-      password: this.password
+    this.errorMessage = ''; // Limpiar mensaje de error previo
+    this.authService.login(this.email, this.password).subscribe({
+      next: (response) => {
+        if (response && response[0]?.user) {
+          // Mostrar alerta de éxito
+          alert('¡Inicio de sesión exitoso! Bienvenido(a), ' + response[0].message);
+          // Los datos ya se guardan en localStorage en el AuthService
+          this.router.navigate(['/home']);
+        } else {
+          this.errorMessage = 'Credenciales inválidas. Por favor, intenta de nuevo.';
+          alert('Error: Credenciales inválidas. Por favor, intenta de nuevo.');
+        }
+      },
+      error: (err) => {
+        this.errorMessage = 'Error al iniciar sesión. Por favor, intenta de nuevo más tarde.';
+        alert('Error al iniciar sesión: ' + err.message);
+        console.error('Login error:', err);
+      }
     });
-    // Aquí puedes implementar la lógica de autenticación
-    // Ejemplo: this.authService.login(this.email, this.password);
   }
 }
