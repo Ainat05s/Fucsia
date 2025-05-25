@@ -1,4 +1,3 @@
-// src/app/services/artists.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -9,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ArtistsService {
   private apiUrl = 'https://n8n.trazo.xyz/webhook/artistas';
-  private artistUrl = 'https://n8n.trazo.xyz/webhook/artists';
+  private artistUrl = 'https://n8n.trazo.xyz/webhook/artistas/id';
 
   constructor(private http: HttpClient) { }
 

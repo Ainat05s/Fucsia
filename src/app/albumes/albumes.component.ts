@@ -1,24 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AlbumsService } from '../services/albums.service';
 
 interface Album {
-  id: number;
-  title: string;
-  artist: string; // Cambiado de 'year' a 'artist'
-  cover: string;
+  idAlbum: number;
+  titulo: string;
+  fecha_lanzamiento: string;
+  artista: string;
 }
 
 @Component({
   selector: 'app-albumes',
   standalone: false,
   templateUrl: './albumes.component.html',
-  styleUrl: './albumes.component.scss'
+  styleUrls: ['./albumes.component.scss']
 })
-export class AlbumesComponent {
-  albums: Album[] = [
-    { id: 1, title: 'YHLQMDLG', artist: 'Bad Bunny', cover: 'https://via.placeholder.com/40' },
-    { id: 2, title: 'El Inevitable', artist: 'Camila', cover: 'https://via.placeholder.com/40' },
-    { id: 3, title: 'Vida Nueva', artist: 'Reik', cover: 'https://via.placeholder.com/40' },
-    { id: 4, title: 'Horizonte', artist: 'Sin Bandera', cover: 'https://via.placeholder.com/40' },
-    { id: 5, title: 'Caminos', artist: 'Jesse & Joy', cover: 'https://via.placeholder.com/40' }
-  ];
+export class AlbumesComponent implements OnInit {
+  albums: Album[] = [];
+  errorMessage: string | null = null;
+
+  constructor(private albumsService: AlbumsService) {}
+
+  ngOnInit(): void {
+    this.loadAlbums();
+  }
+
+  loadAlbums(): void {
+    this.albumsService.getAlbums().subscribe({
+      next: (response) => {
+        console.log('Respuesta del API:', response); // Depuración
+        if (Array.isArray(response)) {
+          this.albums = response;
+        } else {
+          this.errorMessage = 'La respuesta del API no es un array válido.';
+          console.error('Respuesta inesperada:', response);
+        }
+      },
+      error: (error) => {
+        this.errorMessage = 'Error al cargar los álbumes. Intenta de nuevo más tarde.';
+        console.error('Error en la llamada al API:', error);
+      }
+    });
+  }
 }
