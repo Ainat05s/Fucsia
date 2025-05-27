@@ -34,20 +34,23 @@
     <!-- Sección de álbumes -->
     <div class="bg-gradient-to-r from-purple-600 to-fuchsia-600 rounded-lg shadow-lg p-6">
       <h2 class="text-2xl font-semibold text-orange-300 mb-4">Álbumes</h2>
+      <div *ngIf="isLoading" class="text-fuchsia-200 mb-4">Cargando álbumes...</div>
+      <div *ngIf="errorMessage" class="text-red-400 mb-4">{{ errorMessage }}</div>
+      <div *ngIf="!isLoading && !errorMessage && albums.length === 0" class="text-fuchsia-200 mb-4">No se encontraron álbumes.</div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <button
           *ngFor="let album of albums; let i = index"
-          [routerLink]="['/albumes', album.id]"
+          [routerLink]="['/albumes', album.idAlbum]"
           class="flex items-center space-x-4 bg-gradient-to-r from-fuchsia-500 to-orange-500 p-3 rounded-md hover:from-fuchsia-600 hover:to-orange-600 transition-all transform hover:scale-105"
         >
           <img
             [src]="album.cover"
-            [alt]="album.title"
+            [alt]="album.titulo"
             class="w-12 h-12 rounded-md"
           />
           <div class="flex-1 text-left">
-            <h4 class="text-base font-medium text-fuchsia-200">{{ album.title }}</h4>
-            <span class="text-sm text-purple-200">{{ album.artist }}</span>
+            <h4 class="text-base font-medium text-fuchsia-200">{{ album.titulo }}</h4>
+            <span class="text-sm text-purple-200">{{ album.artista }}</span>
           </div>
         </button>
       </div>

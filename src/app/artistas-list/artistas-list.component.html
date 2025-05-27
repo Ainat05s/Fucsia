@@ -35,8 +35,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <button *ngFor="let artist of artists" [routerLink]="['/artistas', artist.idArtista]"
                 class="bg-fuchsia-700 hover:bg-fuchsia-800 text-white font-medium py-4 px-6 rounded-lg shadow-md transition duration-300 text-left">
-          <h3 class="text-xl font-bold text-orange-300">{{ artist.nombre ?? 'Artista desconocido' }}</h3>
-        </button>
+<h3 class="text-lg font-semibold text-orange-300">{{ artist.nombre }}</h3>        </button>
       </div>
     </div>
   </div>

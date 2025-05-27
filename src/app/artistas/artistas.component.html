@@ -5,7 +5,7 @@
     <nav class="bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-lg shadow-lg p-4 mb-6">
       <ul class="flex space-x-8 justify-center">
         <li>
-          <a href="#home" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+          <a [routerLink]="['/home']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 2v6a2 2 0 002 2h4a2 2 0 002-2v-6"></path>
             </svg>
@@ -13,7 +13,7 @@
           </a>
         </li>
         <li>
-          <a href="#search" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+          <a [routerLink]="['/explorar']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0a7 7 0 111.415-1.414L21 21z"></path>
             </svg>
@@ -21,7 +21,7 @@
           </a>
         </li>
         <li>
-          <a href="#library" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
+          <a [routerLink]="['/perfil']" class="flex items-center space-x-2 text-orange-300 hover:text-orange-400 transition text-lg font-medium">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
             </svg>
@@ -31,208 +31,126 @@
       </ul>
     </nav>
 
-    <!-- Encabezado del artista -->
-    <div class="relative">
-      <!-- Imagen de fondo (simulada con gradiente por ahora) -->
-      <div class="h-64 bg-gradient-to-r from-fuchsia-600 to-purple-600 opacity-50"></div>
-      <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-end p-6">
-        <h1 class="text-5xl font-bold text-orange-400">Camila</h1>
-        <p class="text-lg text-fuchsia-200 mt-2">13.1M oyentes mensuales</p>
-        <div class="flex items-center space-x-4 mt-4">
-          <button class="bg-transparent border border-fuchsia-200 text-fuchsia-200 px-4 py-2 rounded-full hover:bg-fuchsia-200 hover:text-fuchsia-950 transition">
-            Seguir
-          </button>
-          <button class="text-fuchsia-200 hover:text-orange-400 transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-            </svg>
-          </button>
-          <button class="bg-gradient-to-r from-orange-500 to-fuchsia-500 rounded-full p-4 hover:from-orange-600 hover:to-fuchsia-600 transition">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5v14l11-7z"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+    <!-- Estado de carga y error -->
+    <div *ngIf="isLoading" class="text-fuchsia-200 text-center p-6">Cargando datos del artista...</div>
+    <div *ngIf="errorMessage" class="text-red-400 text-center p-6">{{ errorMessage }}</div>
+    <div *ngIf="!isLoading && !errorMessage && !artist" class="text-fuchsia-200 text-center p-6">No se encontraron datos para este artista.</div>
 
-    <!-- Navegación secundaria (pestañas) -->
-    <div class="border-b border-fuchsia-800 px-6">
-      <div class="flex space-x-6">
-        <button class="pb-2 text-fuchsia-200 border-b-2 border-orange-400">Canciones</button>
-        <button class="pb-2 text-fuchsia-200 hover:text-orange-400 transition">Álbumes</button>
-      </div>
-    </div>
-
-    <!-- Contenido -->
-    <div class="p-6">
-      <!-- Contenido destacado -->
-      <div class="mb-6">
-        <div class="flex items-center space-x-4">
-          <img
-            src="https://via.placeholder.com/50"
-            alt="Contenido destacado"
-            class="w-12 h-12 rounded-md"
-          />
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-orange-400 flex items-center">
-              <svg class="w-5 h-5 mr-2 text-fuchsia-200" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+    <!-- Contenido del artista -->
+    <div *ngIf="artist">
+      <!-- Encabezado del artista -->
+      <div class="relative">
+        <div class="h-64 bg-gradient-to-r from-fuchsia-600 to-purple-600 opacity-50"></div>
+        <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-end p-6">
+          <h1 class="text-5xl font-bold text-orange-400">{{ artist.nombre }}</h1>
+          <p class="text-lg text-fuchsia-200 mt-2">{{ artist.monthlyListeners }} oyentes mensuales</p>
+          <div class="flex items-center space-x-4 mt-4">
+            <button class="bg-transparent border border-fuchsia-200 text-fuchsia-200 px-4 py-2 rounded-full hover:bg-fuchsia-200 hover:text-fuchsia-950 transition">
+              Seguir
+            </button>
+            <button class="text-fuchsia-200 hover:text-orange-400 transition">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
               </svg>
-              Contenido que te gustó
-            </h3>
-            <p class="text-sm text-fuchsia-200">1 canciones • Camila</p>
+            </button>
+            <button class="bg-gradient-to-r from-orange-500 to-fuchsia-500 rounded-full p-4 hover:from-orange-600 hover:to-fuchsia-600 transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Canciones populares -->
-      <div class="mb-6">
-        <h3 class="text-xl font-semibold text-orange-400 mb-4">Populares</h3>
-        <div class="space-y-4">
-          <!-- Canción 1 -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <span class="text-fuchsia-200">1</span>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Todo Cambió"
-                class="w-10 h-10 rounded-md"
-              />
-              <div>
-                <h4 class="text-base font-medium text-fuchsia-200">Todo Cambió</h4>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-fuchsia-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.5-4.5M15 10l4.5 4.5M15 10H5m0-6h14v12H5V4z"></path>
-                  </svg>
-                  <span class="text-sm text-fuchsia-200">557,411,442</span>
+      <!-- Navegación secundaria (pestañas) -->
+      <div class="border-b border-fuchsia-800 px-6">
+        <div class="flex space-x-6">
+          <button (click)="toggleTab('songs')" class="pb-2 text-fuchsia-200" [ngClass]="{'border-b-2 border-orange-400': activeTab === 'songs'}">Canciones</button>
+          <button (click)="toggleTab('albums')" class="pb-2 text-fuchsia-200 hover:text-orange-400 transition" [ngClass]="{'border-b-2 border-orange-400': activeTab === 'albums'}">Álbumes</button>
+        </div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="p-6">
+        <!-- Contenido destacado (estático) -->
+        <div class="mb-6">
+          <div class="flex items-center space-x-4">
+            <img src="https://via.placeholder.com/50" alt="Contenido destacado" class="w-12 h-12 rounded-md" />
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-orange-400 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-fuchsia-200" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                </svg>
+                Contenido que te gustó
+              </h3>
+              <p class="text-sm text-fuchsia-200">1 canciones • {{ artist.nombre }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canciones populares -->
+        <div *ngIf="activeTab === 'songs'" class="mb-6">
+          <h3 class="text-xl font-semibold text-orange-400 mb-4">Populares</h3>
+          <div class="space-y-4">
+            <div *ngFor="let song of artist.songs; let i = index" class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <span class="text-fuchsia-200">{{ i + 1 }}</span>
+                <youtube-player
+                  [videoId]="getYouTubeVideoId(song.youtube_link)"
+                  [height]="40"
+                  [width]="60"
+                  class="rounded-md"
+                ></youtube-player>
+                <div>
+                  <h4 class="text-base font-medium text-fuchsia-200">{{ song.titulo }}</h4>
+                  <div class="flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-fuchsia-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.5-4.5M15 10l4.5 4.5M15 10H5m0-6h14v12H5V4z"></path>
+                    </svg>
+                    <span class="text-sm text-fuchsia-200">{{ song.reproducciones }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                </svg>
-              </button>
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <!-- Canción 2 -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <span class="text-fuchsia-200">2</span>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Mientes"
-                class="w-10 h-10 rounded-md"
-              />
-              <div>
-                <h4 class="text-base font-medium text-fuchsia-200">Mientes</h4>
-                <span class="text-sm text-fuchsia-200">509,585,458</span>
+              <div class="flex items-center space-x-3">
+                <button class="text-fuchsia-200 hover:text-orange-400 transition">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                  </svg>
+                </button>
+                <button (click)="playSong(song.idCancion)" class="text-fuchsia-200 hover:text-orange-400 transition">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z"></path>
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                </svg>
-              </button>
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <!-- Canción 3 -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <span class="text-fuchsia-200">3</span>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Coleccionista de Canciones"
-                class="w-10 h-10 rounded-md"
-              />
-              <div>
-                <h4 class="text-base font-medium text-fuchsia-200">Coleccionista de Canciones</h4>
-                <span class="text-sm text-fuchsia-200">288,208,704</span>
-              </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                </svg>
-              </button>
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z"></path>
-                </svg>
-              </button>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Álbumes -->
-      <div>
-        <h3 class="text-xl font-semibold text-orange-400 mb-4">Álbumes</h3>
-        <div class="space-y-4">
-          <!-- Álbum 1 -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="Dejarte de Amar"
-                class="w-10 h-10 rounded-md"
-              />
-              <div>
-                <h4 class="text-base font-medium text-fuchsia-200">Dejarte de Amar</h4>
-                <span class="text-sm text-fuchsia-200">2006</span>
+        <!-- Álbumes -->
+        <div *ngIf="activeTab === 'albums'">
+          <h3 class="text-xl font-semibold text-orange-400 mb-4">Álbumes</h3>
+          <div class="space-y-4">
+            <div *ngFor="let album of artist.albums" class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <img src="https://via.placeholder.com/40" [alt]="album.titulo" class="w-10 h-10 rounded-md" />
+                <div>
+                  <h4 class="text-base font-medium text-fuchsia-200">{{ album.titulo }}</h4>
+                  <span class="text-sm text-fuchsia-200">{{ album.anio }}</span>
+                </div>
               </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                </svg>
-              </button>
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <!-- Álbum 2 -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="El Inevitable"
-                class="w-10 h-10 rounded-md"
-              />
-              <div>
-                <h4 class="text-base font-medium text-fuchsia-200">El Inevitable</h4>
-                <span class="text-sm text-fuchsia-200">2010</span>
+              <div class="flex items-center space-x-3">
+                <button class="text-fuchsia-200 hover:text-orange-400 transition">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                  </svg>
+                </button>
+                <button (click)="viewAlbum(album.idAlbum)" class="text-fuchsia-200 hover:text-orange-400 transition">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 5v14l11-7z"></path>
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div class="flex items-center space-x-3">
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
-                </svg>
-              </button>
-              <button class="text-fuchsia-200 hover:text-orange-400 transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z"></path>
-                </svg>
-              </button>
             </div>
           </div>
         </div>
